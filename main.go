@@ -25,7 +25,8 @@ func (s *ShellScriptDTO) addFileToScript(path, content string) {
 func main() {
 	basePath := "."
 	var shellScriptDTO ShellScriptDTO
-	shellScriptDTO.shellScript = ""
+	
+	// shellScriptDTO.shellScript = ""
 	err := filepath.WalkDir(basePath, func(path string, d fs.DirEntry, err error) error {
 		if (err != nil) {
 			fmt.Println("Error accessing path ", basePath)
