@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/atotto/clipboard"
+	"github.com/madhu102938/directory-cloner/constants"
 )
 
 type ShellScriptDTO struct {
@@ -15,11 +16,25 @@ type ShellScriptDTO struct {
 }
 
 func (s *ShellScriptDTO) addFolderToScript(path string) {
-	s.shellScript += "mkdir -p " + path + "\n"
+	s.shellScript += "mkdir -p " + 
+		"'" +
+		path +
+		"'" +
+		"\n"
 }
 
 func (s *ShellScriptDTO) addFileToScript(path, content string) {
-	s.shellScript += "cat >> " + path + "<< 'EOF'" + "\n" + content + "\n" + "EOF" + "\n"
+	s.shellScript += "cat >> " + 
+		"'" +
+		path +
+		"'" +
+		"<< " +
+ 		constants.EOF_constant +
+		"\n" + 
+		content + 
+		"\n" + 
+		constants.EOF_constant +
+		"\n"
 }
 
 func main() {
