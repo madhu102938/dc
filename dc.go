@@ -21,7 +21,7 @@ func main() {
 						Name:    "exclude",
 						Aliases: []string{"e"},
 						Usage:   "Regex pattern to exclude the files/folders",
-						Value:   "a^",
+						Value:   "a^", // Never matches anything
 					},
 					&cli.BoolFlag{
 						Name:    "clipboard",
@@ -54,6 +54,7 @@ func main() {
 				Usage: "clones directories and files given as arguments and creates a script",
 			},
 		},
+		Usage: "A cli tool for creating a script to reproduce directories",
 	}
 
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
