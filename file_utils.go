@@ -91,7 +91,7 @@ func walkDirectories(
 			}
 
 			if isFileBinary(mType) {
-				fmt.Println("WARN:", path, "is a binary file")
+				fmt.Println("WARN:", path, "not a text file")
 				return nil
 			}
 
@@ -136,6 +136,11 @@ func traverseDirectories(paths []string, exclusionPattern *regexp.Regexp, copyTo
 			fmt.Println("Copied the script!")
 		}
 	} else {
-		os.WriteFile("script"+time.Now().String()+".sh", []byte(shellScriptDTO.shellScript), 0666)
+		fileName := "script"+time.Now().String()+".sh"
+		err = os.WriteFile(fileName, []byte(shellScriptDTO.shellScript), 0666)
+		if err != nil {
+			log.Fatalf("Failed to write to file due to %v", err)
+		}
+		fmt.Println("Script created with file name: ", fileName)
 	}
 }
